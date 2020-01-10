@@ -1,0 +1,16 @@
+.TodoListItem{
+    display: flex;
+
+    
+}
+
+.complate{
+    flex:1;
+}
+
+.todo{
+    flex:1;
+}
+.delete{
+    flex:1;
+}

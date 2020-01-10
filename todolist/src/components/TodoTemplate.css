@@ -1,0 +1,22 @@
+.todoTemplate{
+    background: rgb(101, 173, 255);
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+    border-radius: 4px;
+   
+}
+.todoTemplate.div{    
+    color: rgb(255, 255, 255);
+    font-size: 2.4rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+/* .todoTemplate div:nth-child(2){    
+    background: white;
+} */
