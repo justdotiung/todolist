@@ -2,7 +2,7 @@
 
 리액트를 사용했습니다.
 
-![index](./capture/1.png)
+![index](./capture/ima.PNG)
 
 시작화면 
 
