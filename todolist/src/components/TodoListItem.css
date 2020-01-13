@@ -7,9 +7,12 @@
 .complate{
     flex:1;
 }
-
 .todo{
     flex:1;
+}
+.todo.success{
+    flex:1;
+    text-decoration: line-through;
 }
 .delete{
     flex:1;
