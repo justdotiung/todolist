@@ -4,6 +4,7 @@
 
 ![index](./capture/ima.PNG)
 
+
 시작화면 
 
 ![index](./capture/2.png)
