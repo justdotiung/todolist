@@ -32,12 +32,12 @@ const App = () => {
   },[])
 
   const remove = useCallback(id => {
-    setTodos(todos.filter(todo=>todo.id !== id))
-  },[todos]);
+    setTodos(todos => todos.filter(todo=>todo.id !== id))
+  },[]);
 
   const success = useCallback(id => {
-    setTodos(todos.map(todo => todo.id !== id ? todo : {...todo, check: !todo.check})
-  )},[todos]);
+    setTodos(todos => todos.map(todo => todo.id !== id ? todo : {...todo, check: !todo.check})
+  )},[]);
 
   return (
     <div>
