@@ -7,15 +7,15 @@
 
 시작화면 
 
-![index](./capture/insert.png)
+![index](./capture/insert.PNG)
 
 추가
 
-![index](./capture/check.png)
+![index](./capture/check.PNG)
 
 완료
 
-![index](./capture/delete.png)
+![index](./capture/delete.PNG)
 
 삭제 
 
