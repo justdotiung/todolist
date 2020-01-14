@@ -1,0 +1,13 @@
+.homeTemplate {
+    width: 512px;
+    margin-left: auto;
+    margin-right: auto;
+    background: blanchedalmond;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 150px;
+    border-radius: 4px;
+    
+}

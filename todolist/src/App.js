@@ -1,50 +1,17 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React from 'react';
 import './App.css'
 import TodoTemplate from './components/TodoTemplate';
-import TodoInsert from './components/TodoInsert';
-import TodoList from './components/TodoList';
+import { Route } from 'react-router-dom';
+import HomeTemplate from './components/home/HomeTemplate';
 
 const App = () => {
 
-  const [todos, setTodos] = useState([
-    {
-      id:1,
-      contents: '리액트 연습',
-      check: false
-    },
-    {
-      id:2,
-      contents: 'todolist',
-      check: false
-    },
-  ]);
-
-  let nextId = useRef(3);
   
-  const insert = useCallback(contents=>{
-    const todo = {
-      id:nextId.current,
-      contents,
-      check: false
-    };
-    setTodos(todos=>todos.concat(todo));
-    nextId.current += 1;
-  },[])
-
-  const remove = useCallback(id => {
-    setTodos(todos => todos.filter(todo=>todo.id !== id))
-  },[]);
-
-  const success = useCallback(id => {
-    setTodos(todos => todos.map(todo => todo.id !== id ? todo : {...todo, check: !todo.check})
-  )},[]);
 
   return (
     <div>
-      <TodoTemplate  >
-        <TodoInsert insert={insert} />
-        <TodoList todos={todos} remove={remove} success={success}/>
-      </TodoTemplate>
+      <Route path="/" component={HomeTemplate} exact={true}/>
+      <Route path="/todo" component={TodoTemplate}/>
     </div>
   );
 };
