@@ -12,6 +12,7 @@ const TodoInsert = ({insert}) => {
     
     const onClick = useCallback(e=>{
         e.preventDefault();
+        if(!value) return;
         insert(value);
         setValue('');
         input.current.focus();
