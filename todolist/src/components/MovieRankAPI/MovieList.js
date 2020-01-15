@@ -7,7 +7,7 @@ const ListBlock = styled.div`
   margin: 0 auto;
   margin-top: 100px;
   width: 768px;
-  
+
   @media screen and (max-width: 768px) {
     width: 100%;
   }
@@ -17,7 +17,7 @@ const ListBlock = styled.div`
   }
   .fdiv {
     border-radius: 6px;
-    background:rgb(101, 173, 255);
+    background: rgb(101, 173, 255);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,9 +33,8 @@ const ListBlock = styled.div`
   }
   .input {
     flex: 1;
-    text-align:center;
+    text-align: center;
   }
-
 `;
 
 const MovieList = () => {
@@ -63,21 +62,25 @@ const MovieList = () => {
   );
 
   useEffect(() => {
-    const query = date || "20190101";
-    setLoding(true);
-    axios
-      .get(
-        `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=ce945804e17acb78c4841e57d900ba33&targetDt=${query}`
-      )
-      .then(res => setMovie(res.data.boxOfficeResult.dailyBoxOfficeList))
-      .catch(e => console.log(e));
+    const fetchDate = async () => {
+      setLoding(true);
+      try {
+        const query = date || "20190101";
 
-    setLoding(false);
+        const res = await axios.get(
+          `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=ce945804e17acb78c4841e57d900ba33&targetDt=${query}`
+        );
+        setMovie(res.data.boxOfficeResult.dailyBoxOfficeList);
+      } catch (e) {
+        console.log(e);
+      }
+      setLoding(false);
+    };
+    fetchDate();
   }, [date]);
 
   if (loading) {
-    
-    return (<div>로딩중입니다</div>);
+    return <ListBlock>로딩중입니다</ListBlock>;
   }
 
   if (!movies) {
