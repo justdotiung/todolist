@@ -22,6 +22,7 @@ const ItemBlock = styled.div`
     font-weight:600;
     font-size: 10px;
     color: #ff0000c7;
+   
   }
   & + & {
     margin-top: 3px;
@@ -35,7 +36,7 @@ const MovieItem = ({ movie }) => {
       <div className="rank">
         {rank}
         <span>위</span>
-        <p className="new">{rankOldAndNew === "OLD" ? "" : rankOldAndNew}</p>
+        <div className="new">{rankOldAndNew === "OLD" ? "" : rankOldAndNew}</div>
       </div>
       <div className="title">{movieNm}</div>
     </ItemBlock>

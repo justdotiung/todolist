@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import TodoTemplate from "./components/Todo/TodoTemplate";
 import HomeTemplate from "./components/home/HomeTemplate";
-import MovieList from "./components/WeatherAPI/MovieList";
+import MovieList from "./components/MovieRankAPI/MovieList";
 import { Route ,NavLink } from "react-router-dom";
 import styled from "styled-components";
 
