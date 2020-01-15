@@ -22,12 +22,14 @@ const TodoInsert = ({insert}) => {
         <form className="TodoInsert"
             onSubmit={onClick}>
             <input
+            className="inputt"
                placeholder="내용을 입력하세요"
                value={value}
                onChange={onChange}
                ref={input}
             />
-            <button>추가</button>
+            <button
+                className="buttonn">추가</button>
         </form>
     );
 };

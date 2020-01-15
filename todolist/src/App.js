@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import TodoTemplate from "./components/Todo/TodoTemplate";
 import HomeTemplate from "./components/home/HomeTemplate";
+import MovieList from "./components/WeatherAPI/MovieList";
 import { Route ,NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -38,6 +39,10 @@ const categories = [
   {
     name: "todo",
     path: "todo"
+  },
+  {
+    name: "영화순위api",
+    path: "movie"
   }
 ];
 
@@ -47,14 +52,16 @@ const App = () => {
       <HeaderBlock>
         {categories.map(category => (
           <Category 
-          key={category.name} 
-          to={`/${category.path}`}>
+            key={category.name} 
+            to={`/${category.path}`}
+          >
             {category.name}
           </Category>
         ))}
       </HeaderBlock>
-      <Route path="/" component={HomeTemplate}  exact/>
+      <Route path="/" component={HomeTemplate} exact={true} />
       <Route path="/todo" component={TodoTemplate} />
+      <Route path="/movie" component={MovieList} />
     </div>
   );
 };
