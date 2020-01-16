@@ -1,8 +1,9 @@
-import React, { useState, useCallback, useRef } from "react";
+import React from "react";
 import "./TodoTemplate.css";
-import TodoList from "./TodoList";
-import TodoInsert from "./TodoInsert";
 import styled from "styled-components";
+import TodoListContainer from "../../containers/TodoListContainer";
+import TodoInserContainer from "../../containers/TodoInserContainer";
+
 
 const TodoTemplateBlock = styled.div`
   display:flex;
@@ -23,56 +24,19 @@ const TodoListBlock = styled.div`
 `;
 
 const TodoTemplate = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      contents: "리액트 연습",
-      check: false
-    },
-    {
-      id: 2,
-      contents: "todolist",
-      check: false
-    },
-    {
-      id: 3,
-      contents: "spa 라우터 공부",
-      check: false
-    }
-  ]);
 
-  let nextId = useRef(4);
 
-  const insert = useCallback(contents => {
-    const todo = {
-      id: nextId.current,
-      contents,
-      check: false
-    };
-    setTodos(todos => todos.concat(todo));
-    nextId.current += 1;
-  }, []);
-
-  const remove = useCallback(id => {
-    setTodos(todos => todos.filter(todo => todo.id !== id));
-  }, []);
-
-  const success = useCallback(id => {
-    setTodos(todos =>
-      todos.map(todo =>
-        todo.id !== id ? todo : { ...todo, check: !todo.check }
-      )
-    );
-  }, []);
+ 
 
   return (
     <TodoTemplateBlock>
       <div className="todoTemplate">
         <div className="todoTemplate div">오늘 할 일</div>
         <div>
-          <TodoInsert insert={insert} />
+          {/* <TodoInsert insert={insert} /> */}
           <TodoListBlock>
-            <TodoList todos={todos} remove={remove} success={success} />
+            <TodoInserContainer />
+            <TodoListContainer/>
           </TodoListBlock>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function usePromise(promiseCreator, deps) {
-  //대기중 /ㅎ완료/ 실패에 대한 상태관리
+
   const [loading, setLoading] = useState(false);
   const [resolved, setResloved] = useState(null);
   const [error, setError] = useState(null);

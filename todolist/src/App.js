@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import TodoTemplate from "./components/Todo/TodoTemplate";
+import TodoTemplatee from "./components/ReduxTodo/TodoTemplate";
 import HomeTemplate from "./components/home/HomeTemplate";
 import MovieList from "./components/MovieRankAPI/MovieList";
 import { Route ,NavLink } from "react-router-dom";
@@ -43,6 +44,10 @@ const categories = [
   {
     name: "영화순위api",
     path: "movie"
+  },
+  {
+    name: "redux",
+    path: "redux"
   }
 ];
 
@@ -62,6 +67,7 @@ const App = () => {
       <Route path="/" component={HomeTemplate} exact={true} />
       <Route path="/todo" component={TodoTemplate} />
       <Route path="/movie" component={MovieList} />
+      <Route path="/redux" component={TodoTemplatee} />
     </div>
   );
 };
