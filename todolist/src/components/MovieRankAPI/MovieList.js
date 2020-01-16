@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import MovieItem from "./MovieItem";
 import styled from "styled-components";
+import usePromise from "../../lib/usePromise";
 
 const ListBlock = styled.div`
   margin: 0 auto;
@@ -40,8 +41,7 @@ const ListBlock = styled.div`
 const MovieList = () => {
   const [value, setvalue] = useState("");
   const [date, setDate] = useState("");
-  const [loading, setLoding] = useState(false);
-  const [movies, setMovie] = useState(null);
+
   const focus = useRef(null);
 
   const onChange = useCallback(e => {
@@ -61,33 +61,22 @@ const MovieList = () => {
     [value]
   );
 
-  useEffect(() => {
-    const fetchDate = async () => {
-      setLoding(true);
-      try {
-        const query = date || "20190101";
-
-        const res = await axios.get(
-          `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=ce945804e17acb78c4841e57d900ba33&targetDt=${query}`
-        );
-        setMovie(res.data.boxOfficeResult.dailyBoxOfficeList);
-      } catch (e) {
-        console.log(e);
-      }
-      setLoding(false);
-    };
-    fetchDate();
-  }, [date]);
+  const [loading, response, error] = usePromise(()=> {
+    const query = date || "20190101";
+    return axios.get(
+              `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=ce945804e17acb78c4841e57d900ba33&targetDt=${query}`
+            );
+  },[date]);
 
   if (loading) {
     return <ListBlock>로딩중입니다</ListBlock>;
   }
 
-  if (!movies) {
+  if (!response) {
     return null;
   }
-
-  // console.log(movies[0].rank)
+  const  movies  = response.data.boxOfficeResult.dailyBoxOfficeList;
+  
   return (
     <ListBlock>
       <div>
@@ -102,8 +91,8 @@ const MovieList = () => {
           />
           <button>검색</button>
         </form>
-        {movies.map((movie, index) => (
-          <MovieItem key={index} movie={movie} />
+        {movies.map((movie) => (
+          <MovieItem key={movie.rank} movie={movie} />
         ))}
       </div>
     </ListBlock>
