@@ -1,9 +1,11 @@
+import { createAction, handleActions } from "redux-actions";
+
 const INSERT = "todo/INSERT";
 const CHECK = "todo/CHECK";
 const REMOVE = "todo/REMOVE";
 
 const initialState = {
-  todos : [
+  todos: [
     {
       id: 1,
       contents: "리액트 연습",
@@ -26,48 +28,34 @@ const initialState = {
     }
   ]
 };
+
 let id = 5;
+export const insert = createAction(INSERT, contents => ({
+  id: id++,
+  contents,
+  check: false
+}));
+export const check = createAction(CHECK, id => id);
+export const remove = createAction(REMOVE, id => id);
 
-const insert = contents => ({
-  type: INSERT,
-  todo: {
-    id: id++,
-    contents: contents,
-    ckeck: false
-  }
-});
+const todo = handleActions(
+  {
+    [INSERT]: (state, {payload:todo}) => ({
+      ...state,
+      todos: state.todos.concat(todo)
+    }),
+    [CHECK]: (state, {payload:id}) => ({
+      ...state,
+      todos: state.todos.map(todo =>
+        todo.id === id ? { ...todo, check: !todo.check } : todo
+      )
+    }),
+    [REMOVE]: (state, {payload:id}) => ({
+      ...state,
+      todos: state.todos.filter(todo => todo.id !== id)
+    })
+  },
+  initialState
+);
 
-const success = id => ({
-  type: CHECK,
-  id
-});
-
-const remove = id => ({
-  type: REMOVE,
-  id
-});
-
-export { insert, success, remove };
-
-function todos(state = initialState, action) {
-  switch (action.type) {
-    case INSERT:
-      return {
-        todos: state.todos.concat(action.todo)
-      };
-    case CHECK:
-      return {
-        todos: state.todos.map(todo =>
-          todo.id === action.id ? { ...todo, check: !todo.check } : todo
-        )
-      };
-    case REMOVE:
-      return {
-        todos: state.todos.filter(todo => todo.id !== action.id)
-      };
-    default:
-      return state;
-  }
-}
-
-export default todos;
+export default todo;

@@ -1,18 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { success, remove } from "../modules/todo";
+import { check, remove } from "../modules/todo";
 import TodoList from "../components/ReduxTodo/TodoList";
 
-const TodoListContainer = ({ todos, remove, success }) => {
-  return <TodoList remove={remove} success={success} todos={todos} />;
+const TodoListContainer = ({ todos, remove, check }) => {
+  return <TodoList remove={remove} success={check} todos={todos} />;
 };
 
 export default connect(
-  ({todos}) => ({
-    todos: todos.todos
+  ({todo}) => ({
+    todos: todo.todos
   }),
   {
-    success,
+    check,
     remove
   }
 )(TodoListContainer);

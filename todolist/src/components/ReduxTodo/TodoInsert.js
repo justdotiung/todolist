@@ -3,7 +3,7 @@ import './TodoInsert.css'
 
 const TodoInsert = ({insert}) => {
 
-     const [value, setValue] = useState('');
+    const [value, setValue] = useState('');
     const input = useRef(null);
 
     const onChange = useCallback(e => {

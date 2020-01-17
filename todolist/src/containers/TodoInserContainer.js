@@ -9,8 +9,8 @@ const TodoInserContainer = ({insert}) => {
     );
 };
 
-export default connect((todos)=> ({
-    todos: todos.todos,
+export default connect(({todo})=> ({
+    todos: todo.todos,
 }),{
     insert
 })(TodoInserContainer);
