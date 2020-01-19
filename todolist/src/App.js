@@ -4,6 +4,7 @@ import TodoTemplate from "./components/Todo/TodoTemplate";
 import TodoTemplatee from "./components/ReduxTodo/TodoTemplate";
 import HomeTemplate from "./components/home/HomeTemplate";
 import MovieList from "./components/MovieRankAPI/MovieList";
+import MovieListt from "./containers/MovieContainer";
 import { Route ,NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -48,6 +49,10 @@ const categories = [
   {
     name: "redux",
     path: "redux"
+  },
+  {
+    name: "middleware",
+    path: "middleware"
   }
 ];
 
@@ -68,6 +73,7 @@ const App = () => {
       <Route path="/todo" component={TodoTemplate} />
       <Route path="/movie" component={MovieList} />
       <Route path="/redux" component={TodoTemplatee} />
+      <Route path="/middleware" component={MovieListt} />
     </div>
   );
 };

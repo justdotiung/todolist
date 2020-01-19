@@ -25,11 +25,16 @@ const initialState = {
       id: 4,
       contents: "redux 공부",
       check: false
+    },
+    {
+      id:5,
+      contents: "middleware 공부",
+      check: false
     }
   ]
 };
 
-let id = 5;
+let id = 6;
 export const insert = createAction(INSERT, contents => ({
   id: id++,
   contents,

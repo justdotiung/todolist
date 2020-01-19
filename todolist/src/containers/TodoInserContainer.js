@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { insert } from "../modules/todo";
 import TodoInsert from "../components/ReduxTodo/TodoInsert";
 
