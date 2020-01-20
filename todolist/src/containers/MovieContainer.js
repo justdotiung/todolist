@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import MovieList from "../components/MovieMiddleware/MovieList";
-import { getBoxOffice, getQuery } from "../modules/movie";
+import { getBoxOffice } from "../modules/movie";
 
 const { useEffect } = React;
 
 const MovieContainer = ({ getBoxOffice, boxoffice, loading }) => {
   useEffect(() => {
-    getBoxOffice();
-  }, [getBoxOffice]);
+    if(boxoffice) return;
+    getBoxOffice("20190101");
+  }, [getBoxOffice, boxoffice]);
 
   return (
     <>

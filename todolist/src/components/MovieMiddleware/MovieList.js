@@ -38,15 +38,13 @@ const ListBlock = styled.div`
 
 const MovieList = ({ loading, movie, getBoxOffice }) => {
   const [value, setvalue] = useState("");
-  const [date, setDate] = useState("");
-
   const focus = useRef(null);
 
   const onChange = useCallback(
     e => {
       setvalue(e.target.value);
     },
-    [setDate]
+    []
   );
 
   const onSubmit = useCallback(
@@ -55,30 +53,12 @@ const MovieList = ({ loading, movie, getBoxOffice }) => {
       const num = parseInt(value);
       if (!value || !num || value.length !== 8) return;
 
-      setDate(value);
       setvalue("");
-      getBoxOffice(date);
+      getBoxOffice(value);
       focus.current.focus();
     },
     [value]
   );
-  /*
-  const [loading, response, error] = usePromise(()=> {
-    const query = date || "20190101";
-    return axios.get(
-              `http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=ce945804e17acb78c4841e57d900ba33&targetDt=${query}`
-            );
-  },[date]);
-
-  if (loading) {
-    return <ListBlock>로딩중입니다</ListBlock>;
-  }
-
-  if (!response) {
-    return null;
-  }
-  const  movies  = response.data.boxOfficeResult.dailyBoxOfficeList;
-  */
   console.log(loading);
   console.log(movie);
   return (
@@ -98,7 +78,7 @@ const MovieList = ({ loading, movie, getBoxOffice }) => {
         {loading && "로딩중"}
         {!loading &&
           movie &&
-          movie.map(rank => <MovieItem key={rank.rank} movie={rank} />)}
+          movie.map(movie => <MovieItem key={movie.rank} movie={movie} />)}
       </div>
     </ListBlock>
   );
