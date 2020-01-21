@@ -44,7 +44,7 @@ const MovieList = ({ loading, movie, getBoxOffice }) => {
     e => {
       setvalue(e.target.value);
     },
-    []
+    [value]
   );
 
   const onSubmit = useCallback(
@@ -84,4 +84,4 @@ const MovieList = ({ loading, movie, getBoxOffice }) => {
   );
 };
 
-export default MovieList;
+export default React.memo(MovieList);
