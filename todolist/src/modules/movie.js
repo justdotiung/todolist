@@ -21,35 +21,35 @@ const initialState = {
 };
 
 function* getBoxOfficeSaga(action) {
-  yield put({type: GET_BOXOFFICE});
+  yield put(GET_BOXOFFICE);
   try {
-    const boxOffice = yield call(api.getBoxOffice(), action.payload);
-
+    const boxOffice = yield call(api.getBoxOffice(), action.paload);
+    
     yield put({
       type: GET_BOXOFFICE_SUCCESS,
       payload: boxOffice.data.boxOfficeResult.dailyBoxOfficeList
-    })
+    });
   } catch(e){
     yield put({
-      type: GET_BOXOFFICE_FAILURE,
-      error:true,
-      paload: e
-    })
+        type: GET_BOXOFFICE_FAILURE,
+        error:true,
+        paload: e
+      })
+    }
   }
-}
-
-export function* movieSaga() {
-  yield takeLatest(GET_BOXOFFICE, getBoxOfficeSaga);
-}
-
-export const getBoxOffice = date => async dispatch => {
-  dispatch({ type: GET_BOXOFFICE });
-  try {
-    const res = await api.getBoxOffice(date);
-    dispatch({
-      type: GET_BOXOFFICE_SUCCESS,
-      payload: res.data.boxOfficeResult.dailyBoxOfficeList
-    });
+  
+  export function* movieSaga() {
+    yield takeLatest(GET_BOXOFFICE, getBoxOfficeSaga);
+  }
+  
+  export const getBoxOffice = date => async dispatch => {
+    dispatch({ type: GET_BOXOFFICE });
+    try {
+      const res = await api.getBoxOffice(date);
+      dispatch({
+        type: GET_BOXOFFICE_SUCCESS,
+        payload: res.data.boxOfficeResult.dailyBoxOfficeList
+      });
   } catch (e) {
     dispatch({
       type: GET_BOXOFFICE_FAILURE,

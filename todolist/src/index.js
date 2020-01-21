@@ -15,7 +15,7 @@ const logger = createLogger();
 const sagaMiddleware= createSagaMiddleware();
 
 const store = createStore(rootReducer, applyMiddleware(logger, ReduxThunk, sagaMiddleware));
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
