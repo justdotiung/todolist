@@ -19,7 +19,7 @@ const initialState = {
     GET_BOXOFFICE: false
   }
 };
-
+/*
 function* getBoxOfficeSaga(action) {
   yield put(GET_BOXOFFICE);
   try {
@@ -59,7 +59,7 @@ function* getBoxOfficeSaga(action) {
     throw e;
   }
 };
-
+*/
 const movie = handleActions(
   {
     [GET_BOXOFFICE]: state => ({
