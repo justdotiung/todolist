@@ -49,7 +49,7 @@ function* getBoxOfficeSaga(action) {
       dispatch({
         type: GET_BOXOFFICE_SUCCESS,
         payload: res.data.boxOfficeResult.dailyBoxOfficeList
-      });
+      },console.log(2));
   } catch (e) {
     dispatch({
       type: GET_BOXOFFICE_FAILURE,
