@@ -36,31 +36,9 @@ const ListBlock = styled.div`
   }
 `;
 
-const MovieList = ({ loading, movie, getBoxOffice }) => {
-  const [value, setvalue] = useState("");
-  const focus = useRef(null);
+const MovieList = ({ loading, movie, onChange, focus, onSubmit, date }) => {
+// console.log(movie)
 
-  const onChange = useCallback(
-    e => {
-      setvalue(e.target.value);
-    },
-    [value]
-  );
-
-  const onSubmit = useCallback(
-    e => {
-      e.preventDefault();
-      const num = parseInt(value);
-      if (!value || !num || value.length !== 8) return;
-
-      setvalue("");
-      getBoxOffice(value);
-      focus.current.focus();
-    },
-    [value]
-  );
-  console.log(loading);
-  console.log(movie);
   return (
     <ListBlock>
       <div>
@@ -68,9 +46,9 @@ const MovieList = ({ loading, movie, getBoxOffice }) => {
         <form className="date" onSubmit={onSubmit}>
           <input
             className="input"
-            value={value}
-            onChange={onChange}
+            value={date}
             ref={focus}
+            onChange={onChange}
             placeholder=" 궁금한 날 예) 20190105 처럼 입력"
           />
           <button>검색</button>

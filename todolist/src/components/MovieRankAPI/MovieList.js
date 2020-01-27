@@ -84,9 +84,8 @@ const MovieList = () => {
         <form className="date" onSubmit={onSubmit}>
           <input
             className="input"
-            value={value}
+           
             onChange={onChange}
-            ref={focus}
             placeholder=" 궁금한 날 예) 20190105 처럼 입력"
           />
           <button>검색</button>

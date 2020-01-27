@@ -1,5 +1,5 @@
 import * as api from "../lib/api";
-import { handleActions } from "redux-actions";
+import { handleActions, createAction } from "redux-actions";
 /**
  * delay 기다리는 함수
  * put 특정액션 디스패치
@@ -20,10 +20,14 @@ const initialState = {
   }
 };
 
+export const getBoxOffice = createAction(GET_BOXOFFICE, date => date )
+
 function* getBoxOfficeSaga(action) {
-  yield put(GET_BOXOFFICE);
+  yield put(getBoxOffice); 
+  console.log(getBoxOffice)// call(첫번째 함수는 호출하고싶은 함수, ...호출함수에 넣어주고 싶은 인수들)
   try {
-    const boxOffice = yield call(api.getBoxOffice(), action.paload);
+    const boxOffice = yield call(api.getBoxOffice, action.payload );
+    console.log(action)
     
     yield put({
       type: GET_BOXOFFICE_SUCCESS,
@@ -33,7 +37,7 @@ function* getBoxOfficeSaga(action) {
     yield put({
         type: GET_BOXOFFICE_FAILURE,
         error:true,
-        paload: e
+        payload: e
       })
     }
   }
@@ -42,23 +46,6 @@ function* getBoxOfficeSaga(action) {
     yield takeLatest(GET_BOXOFFICE, getBoxOfficeSaga);
   }
   
-  export const getBoxOffice = date => async dispatch => {
-    dispatch({ type: GET_BOXOFFICE });
-    try {
-      const res = await api.getBoxOffice(date);
-      dispatch({
-        type: GET_BOXOFFICE_SUCCESS,
-        payload: res.data.boxOfficeResult.dailyBoxOfficeList
-      },console.log(2));
-  } catch (e) {
-    dispatch({
-      type: GET_BOXOFFICE_FAILURE,
-      error: true,
-      payload: e
-    });
-    throw e;
-  }
-};
 
 const movie = handleActions(
   {
