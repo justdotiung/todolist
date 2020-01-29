@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import TodoTemplate from "./components/Todo/TodoTemplate";
 import TodoTemplatee from "./components/ReduxTodo/TodoTemplate";
@@ -7,6 +7,7 @@ import MovieList from "./components/MovieRankAPI/MovieList";
 import MovieListt from "./containers/MovieContainer";
 import { Route ,NavLink } from "react-router-dom";
 import styled from "styled-components";
+import axios from 'axios';
 
 const HeaderBlock = styled.div`
   display: flex;
@@ -57,6 +58,19 @@ const categories = [
 ];
 
 const App = () => {
+
+  useEffect(()=> {
+    const fetchData = async () => {
+      try{
+
+        const response = await axios.get('/api/hello')
+        console.log(response);
+      }catch(e){
+        console.log(e);
+      }
+    } 
+    fetchData();
+  })
   return (
     <div>
       <HeaderBlock>
